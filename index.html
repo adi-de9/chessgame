@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0a0e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Wizard's Chess">
     <title>Wizard's Chess - Gothic Cathedral & Mobile Academy</title>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Cinzel for Gothic flavor, Inter for clean Material UI, Material Symbols -->
@@ -84,7 +89,6 @@
             line-height: 1;
             vertical-align: middle;
         }
-        /* Hide scrollbars on horizontal lesson pill strip */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -116,7 +120,7 @@
     <header class="fixed top-0 left-0 right-0 z-20 px-2 sm:px-4 safe-top pointer-events-none">
         <nav class="md-bar mx-auto max-w-6xl rounded-full px-2.5 sm:px-5 py-1.5 sm:py-2 flex items-center justify-between gap-1.5 pointer-events-auto">
             
-            <!-- Left: Brand & Turn Status combined cleanly for mobile -->
+            <!-- Left: Brand & Turn Status -->
             <div class="flex items-center gap-2 min-w-0">
                 <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300 shrink-0">
                     <span class="material-symbols-rounded text-lg">castle</span>
@@ -171,7 +175,7 @@
         </nav>
     </header>
 
-    <!-- FLOATING RIGHT-SIDE QUICK ZOOM & RESET VIEW CONTROLS (Super Handy on Mobile) -->
+    <!-- FLOATING RIGHT-SIDE QUICK ZOOM & RESET VIEW CONTROLS -->
     <div class="fixed right-2.5 sm:right-4 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-2 pointer-events-auto">
         <button id="btn-zoom-in" class="md-bar md-chip w-10 h-10 rounded-full flex items-center justify-center text-slate-200 border border-white/15 active:bg-white/20" title="Zoom In">
             <span class="material-symbols-rounded">add</span>
@@ -184,7 +188,7 @@
         </button>
     </div>
 
-    <!-- COMBAT BANNER & PIECE INSPECTOR TOAST (Top-Below-Header so it never collides with bottom drawer) -->
+    <!-- COMBAT BANNER & PIECE INSPECTOR TOAST -->
     <div class="fixed top-14 sm:top-16 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center gap-1.5 w-[92%] max-w-md">
         <div id="combat-banner" class="opacity-0 transform -translate-y-2 transition-all duration-200 md-bar rounded-full px-4 py-1 text-[11px] sm:text-xs font-semibold tracking-wider uppercase text-amber-300 border border-amber-400/35 text-center shadow-lg">
             Knight strikes Pawn!
@@ -202,14 +206,12 @@
         </div>
     </div>
 
-    <!-- MOBILE-FIRST BEGINNER LEARNING ACADEMY PANEL (Docks at bottom on mobile, left card on desktop) -->
+    <!-- MOBILE-FIRST BEGINNER LEARNING ACADEMY PANEL -->
     <aside id="learn-panel" class="hidden fixed bottom-0 left-0 right-0 sm:bottom-auto sm:top-20 sm:left-4 sm:right-auto z-30 w-full sm:w-96 pointer-events-auto safe-bottom">
         <div class="md-bar rounded-t-3xl sm:rounded-2xl p-3 sm:p-4 border-t sm:border border-emerald-400/35 shadow-2xl max-h-[54dvh] sm:max-h-[80dvh] flex flex-col">
             
-            <!-- Mobile Drag Handle Indicator -->
             <div class="w-10 h-1 bg-white/20 rounded-full mx-auto mb-2 sm:hidden"></div>
 
-            <!-- Header & Collapsible Rulebook Toggle -->
             <div class="flex items-center justify-between gap-1.5 mb-2 shrink-0">
                 <div class="flex items-center gap-2 min-w-0">
                     <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 shrink-0" id="lesson-badge">
@@ -220,7 +222,6 @@
                     </h2>
                 </div>
                 <div class="flex items-center gap-1 shrink-0">
-                    <!-- Mobile Toggle to Collapse/Expand Theory Text so Board is 100% Visible -->
                     <button id="btn-toggle-theory" class="md-chip px-2 py-1 rounded-full text-[10px] font-semibold border border-white/15 text-slate-200 flex items-center gap-0.5 sm:hidden">
                         <span class="material-symbols-rounded text-xs" id="icon-toggle-theory">expand_less</span>
                         <span id="label-toggle-theory">Hide Info</span>
@@ -231,12 +232,8 @@
                 </div>
             </div>
 
-            <!-- Lesson Quick Selector Pills (Horizontal Swipeable) -->
-            <div id="lesson-tabs" class="no-scrollbar flex items-center gap-1.5 overflow-x-auto pb-1.5 mb-2 border-b border-white/10 text-[11px] shrink-0">
-                <!-- Populated dynamically -->
-            </div>
+            <div id="lesson-tabs" class="no-scrollbar flex items-center gap-1.5 overflow-x-auto pb-1.5 mb-2 border-b border-white/10 text-[11px] shrink-0"></div>
 
-            <!-- Collapsible How It Moves & When To Use (Scrollable if needed on tiny screens) -->
             <div id="lesson-theory-drawer" class="space-y-1.5 text-[11px] sm:text-xs leading-relaxed text-slate-200 bg-black/40 rounded-xl p-2.5 border border-white/5 overflow-y-auto mb-2">
                 <div>
                     <span class="text-emerald-300 font-semibold uppercase tracking-wider text-[10px] block">How It Moves:</span>
@@ -248,7 +245,6 @@
                 </div>
             </div>
 
-            <!-- Interactive Task Box (Always visible in Academy Mode) -->
             <div id="lesson-task-box" class="rounded-xl p-2 sm:p-2.5 bg-emerald-950/60 border border-emerald-400/40 flex items-start gap-2 shrink-0">
                 <span id="lesson-task-icon" class="material-symbols-rounded text-emerald-300 mt-0.5 text-base">flag</span>
                 <div class="flex-1 min-w-0">
@@ -257,7 +253,6 @@
                 </div>
             </div>
 
-            <!-- Bottom Navigation Controls: Prev / Hint / Reset / Next -->
             <div class="mt-2.5 flex items-center justify-between gap-1.5 shrink-0">
                 <button id="btn-prev-lesson" class="md-chip px-3 py-1.5 rounded-full text-xs font-medium border border-white/15 text-slate-200 flex items-center gap-0.5">
                     <span class="material-symbols-rounded text-sm">chevron_left</span> Prev
@@ -277,7 +272,7 @@
         </div>
     </aside>
 
-    <!-- Bottom Subtle Interactive Hint Bar (Hidden while Academy drawer is open on mobile) -->
+    <!-- Bottom Subtle Interactive Hint Bar -->
     <footer id="default-footer" class="fixed bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center w-[94%] max-w-xl safe-bottom">
         <div class="md-bar rounded-full px-3.5 py-1.5 text-[10px] sm:text-xs text-slate-400 flex items-center gap-2.5 sm:gap-4 pointer-events-auto">
             <span class="flex items-center gap-1"><i class="material-symbols-rounded text-xs sm:text-sm text-amber-400">touch_app</i> Tap piece &amp; square</span>
@@ -302,7 +297,179 @@
         </div>
     </div>
 
+    <!-- 2-MINUTE PWA INSTALL POPUP MODAL (Android Direct Button + iPhone Instructions) -->
+    <div id="pwa-install-modal" class="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/75 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 p-3 sm:p-4 safe-bottom">
+        <div id="pwa-install-card" class="md-bar rounded-3xl p-5 sm:p-6 max-w-md w-full border border-amber-400/40 shadow-2xl transform translate-y-6 sm:translate-y-0 sm:scale-95 transition-all duration-300">
+            
+            <!-- Modal Header -->
+            <div class="flex items-start justify-between gap-3 mb-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-300 shrink-0 shadow-inner">
+                        <span class="material-symbols-rounded text-2xl">castle</span>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">Play Fullscreen App</span>
+                        <h3 class="font-gothic text-lg sm:text-xl font-bold text-amber-100 mt-0.5">Install Wizard's Chess</h3>
+                    </div>
+                </div>
+                <button id="btn-pwa-close" class="text-slate-400 hover:text-white p-1 rounded-full" title="Close">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                Enjoying the match? Add <strong class="text-amber-200">Wizard's Chess</strong> to your Home Screen for instant fullscreen 60 FPS launch—even offline!
+            </p>
+
+            <!-- ANDROID / CHROME / DESKTOP DIRECT INSTALL SECTION -->
+            <div id="pwa-android-section" class="space-y-2.5">
+                <button id="btn-pwa-install-direct" class="md-chip w-full py-3 px-4 rounded-full font-bold text-sm bg-gradient-to-r from-amber-500 to-amber-400 text-slate-950 shadow-lg flex items-center justify-center gap-2">
+                    <span class="material-symbols-rounded text-lg">download</span>
+                    <span>Install App Now</span>
+                </button>
+                <p id="pwa-android-fallback-hint" class="hidden text-[11px] text-slate-400 text-center bg-black/40 rounded-xl p-2.5 border border-white/10">
+                    Tip: Tap your browser's <strong class="text-slate-200">Menu (⋮)</strong> in the top corner and select <strong class="text-amber-300">"Add to Home screen"</strong> or <strong class="text-amber-300">"Install app"</strong>.
+                </p>
+            </div>
+
+            <!-- IPHONE / IPAD (iOS SAFARI) STEP-BY-STEP INSTRUCTIONS SECTION -->
+            <div id="pwa-ios-section" class="hidden bg-black/45 rounded-2xl p-3.5 border border-white/10 space-y-2.5 text-xs text-slate-200 mb-3">
+                <div class="text-amber-300 font-semibold uppercase tracking-wider text-[10px] flex items-center gap-1">
+                    <span class="material-symbols-rounded text-sm">phone_iphone</span> How to Install on iPhone / iPad:
+                </div>
+                <div class="flex items-center gap-2.5">
+                    <span class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 font-bold flex items-center justify-center shrink-0">1</span>
+                    <span>Tap the <strong class="text-white">Share</strong> button <span class="inline-flex items-center justify-center px-1.5 py-0.5 rounded bg-white/10 text-sky-300"><i class="material-symbols-rounded text-sm">ios_share</i></span> at the bottom of Safari.</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                    <span class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 font-bold flex items-center justify-center shrink-0">2</span>
+                    <span>Scroll down the list and tap <strong class="text-white">"Add to Home Screen"</strong> <span class="inline-flex items-center justify-center px-1.5 py-0.5 rounded bg-white/10 text-emerald-300"><i class="material-symbols-rounded text-sm">add_box</i></span>.</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                    <span class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 font-bold flex items-center justify-center shrink-0">3</span>
+                    <span>Tap <strong class="text-amber-300">"Add"</strong> in the top-right corner to launch fullscreen!</span>
+                </div>
+            </div>
+
+            <button id="btn-pwa-later" class="mt-2.5 w-full py-2 rounded-full text-xs font-medium text-slate-400 hover:text-slate-200">
+                Maybe Later
+            </button>
+        </div>
+    </div>
+
     <script>
+        /***********************************************************************
+         * 0. PWA SETUP & 2-MINUTE INSTALL POPUP (Android Button vs iPhone Guide)
+         ***********************************************************************/
+        (function setupPWAAndTwoMinutePopup() {
+            // 1. Generate SVG App Icon & Dynamic Web Manifest
+            const svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <rect width="512" height="512" rx="110" fill="#14121a"/>
+                <rect x="20" y="20" width="472" height="472" rx="95" fill="none" stroke="#d4af37" stroke-width="12"/>
+                <path d="M140 380h232v40H140zm28-40l20-160h136l20 160H168zm4-190V95h44v35h40V95h44v35h40V95h44v55H172z" fill="#f59e0b"/>
+            </svg>`;
+            const iconUrl = 'data:image/svg+xml;utf8,' + encodeURIComponent(svgIcon);
+
+            // Attach Apple Touch Icon
+            const appleLink = document.createElement('link');
+            appleLink.rel = 'apple-touch-icon';
+            appleLink.href = iconUrl;
+            document.head.appendChild(appleLink);
+
+            // Attach Web App Manifest
+            const manifestObj = {
+                name: "Wizard's Chess - Gothic Sanctuary",
+                short_name: "Wizard's Chess",
+                description: "3D Gothic Wizard's Chess & Beginner Academy",
+                start_url: window.location.href,
+                display: "standalone",
+                orientation: "any",
+                background_color: "#0b0a0e",
+                theme_color: "#0b0a0e",
+                icons: [
+                    { src: iconUrl, sizes: "192x192", type: "image/svg+xml", purpose: "any maskable" },
+                    { src: iconUrl, sizes: "512x512", type: "image/svg+xml", purpose: "any maskable" }
+                ]
+            };
+            const manifestBlob = new Blob([JSON.stringify(manifestObj)], { type: 'application/manifest+json' });
+            const manifestLink = document.createElement('link');
+            manifestLink.rel = 'manifest';
+            manifestLink.href = URL.createObjectURL(manifestBlob);
+            document.head.appendChild(manifestLink);
+
+            // 2. Detect Standalone Mode & Platform (iOS vs Android/Desktop)
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+            let deferredInstallPrompt = null;
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredInstallPrompt = e;
+            });
+
+            window.addEventListener('appinstalled', () => {
+                deferredInstallPrompt = null;
+                hidePWAPopup();
+            });
+
+            const modal = document.getElementById('pwa-install-modal');
+            const card = document.getElementById('pwa-install-card');
+            const androidSection = document.getElementById('pwa-android-section');
+            const iosSection = document.getElementById('pwa-ios-section');
+            const directBtn = document.getElementById('btn-pwa-install-direct');
+            const fallbackHint = document.getElementById('pwa-android-fallback-hint');
+
+            function showPWAPopup() {
+                if (isStandalone) return; // Already installed & running as app
+
+                if (isIOS) {
+                    // Show iPhone/iPad Safari instructions
+                    androidSection.classList.add('hidden');
+                    iosSection.classList.remove('hidden');
+                } else {
+                    // Show Android / Desktop Install Button
+                    androidSection.classList.remove('hidden');
+                    iosSection.classList.add('hidden');
+                }
+
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                card.classList.remove('translate-y-6', 'sm:scale-95');
+                card.classList.add('translate-y-0', 'sm:scale-100');
+            }
+
+            function hidePWAPopup() {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                card.classList.add('translate-y-6', 'sm:scale-95');
+                card.classList.remove('translate-y-0', 'sm:scale-100');
+            }
+
+            directBtn.addEventListener('click', async () => {
+                if (deferredInstallPrompt) {
+                    deferredInstallPrompt.prompt();
+                    const { outcome } = await deferredInstallPrompt.userChoice;
+                    if (outcome === 'accepted') {
+                        deferredInstallPrompt = null;
+                        hidePWAPopup();
+                    }
+                } else {
+                    // Browser hasn't exposed native prompt (e.g. local file or non-HTTPS preview)—show 1-line browser menu tip
+                    fallbackHint.classList.remove('hidden');
+                }
+            });
+
+            document.getElementById('btn-pwa-close').addEventListener('click', hidePWAPopup);
+            document.getElementById('btn-pwa-later').addEventListener('click', hidePWAPopup);
+
+            // 3. Trigger Popup Automatically After 2 Minutes (120,000 ms) of Playtime
+            if (!isStandalone) {
+                setTimeout(() => {
+                    showPWAPopup();
+                }, 120000); // 2 minutes = 120,000 milliseconds
+            }
+        })();
+
         /***********************************************************************
          * 1. ZERO-LATENCY WEB AUDIO API SYNTHESIZER
          ***********************************************************************/
@@ -625,7 +792,7 @@
         setupOptimizedLighting();
 
         /***********************************************************************
-         * 5. INSTANCED GOTHIC CATHEDRAL ARCHITECTURE
+         * 5. INSTANCED GOTHIC CATHEDRAL ARCHITECTURE (Yellow Particles Removed)
          ***********************************************************************/
         const dummyMatrix = new THREE.Object3D();
 
@@ -729,25 +896,6 @@
             southRose.position.set(0, 14, 27);
             cathedralGroup.add(roseGroup);
             cathedralGroup.add(southRose);
-
-            const particleCount = 140;
-            const pGeo = new THREE.BufferGeometry();
-            const positions = new Float32Array(particleCount * 3);
-            for (let i = 0; i < particleCount; i++) {
-                positions[i * 3] = (Math.random() - 0.5) * 30;
-                positions[i * 3 + 1] = 0.5 + Math.random() * 15;
-                positions[i * 3 + 2] = (Math.random() - 0.5) * 30;
-            }
-            pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            const pMat = new THREE.PointsMaterial({
-                color: 0xfde68a,
-                size: 0.14,
-                transparent: true,
-                opacity: 0.45
-            });
-            const dustParticles = new THREE.Points(pGeo, pMat);
-            dustParticles.name = "cathedralDust";
-            cathedralGroup.add(dustParticles);
 
             scene.add(cathedralGroup);
         }
@@ -1338,7 +1486,6 @@
         }
 
         function showPieceTipToast(pieceType) {
-            // Avoid overlapping toast on small screens if the Academy drawer is already open
             if (isLearningMode && window.innerWidth < 640) return;
             const info = PIECE_GUIDE_TIPS[pieceType];
             if (!info) return;
@@ -1682,8 +1829,8 @@
             targetRadius: initialRadius,
             lookAtY: 0.7,
             targetLookAtY: 0.7,
-            minRadius: 6.0,    // Deep zoom-in
-            maxRadius: 55.0,   // Wide cathedral zoom-out
+            minRadius: 6.0,
+            maxRadius: 55.0,
             pinchSpeed: 0.08,
             presetIndex: 0
         };
@@ -1786,7 +1933,6 @@
         function onPointerDown(e) {
             if (e.target !== renderer.domElement) return;
 
-            // Two-finger pinch start on mobile
             if (e.touches && e.touches.length === 2) {
                 isPointerDown = false;
                 pointerMoved = true;
@@ -1804,7 +1950,6 @@
         }
 
         function onPointerMove(e) {
-            // Two-finger pinch zoom on mobile
             if (e.touches && e.touches.length === 2) {
                 const currentDist = getTouchDistance(e.touches);
                 if (initialPinchDistance !== null) {
@@ -1825,7 +1970,6 @@
             if (isPointerDown) {
                 const dx = clientX - pointerStart.x;
                 const dy = clientY - pointerStart.y;
-                // Forgiving 10px touch threshold on mobile so taps don't misfire as drags
                 const dragThreshold = e.touches ? 10 : 4;
                 if (Math.abs(dx) > dragThreshold || Math.abs(dy) > dragThreshold) {
                     pointerMoved = true;
@@ -1899,7 +2043,6 @@
             );
         }, { passive: false });
 
-        // Dedicated On-Screen Zoom In / Out / Recenter Buttons
         document.getElementById('btn-zoom-in').addEventListener('click', () => {
             cameraState.targetRadius = Math.max(cameraState.minRadius, cameraState.targetRadius - 3.5);
         });
@@ -1990,7 +2133,6 @@
         function updateCameraOffsetForMobileSheet() {
             const isMobilePortrait = window.innerWidth < 640;
             if (isLearningMode && isMobilePortrait) {
-                // Shift camera lookAt target slightly down so the 3D board sits higher in the top half of the screen
                 cameraState.targetLookAtY = -2.2;
                 cameraState.targetRadius = 29.5;
             } else {
@@ -2031,7 +2173,6 @@
             }
         }
 
-        // Mobile Theory Drawer Collapse Toggle
         document.getElementById('btn-toggle-theory').addEventListener('click', () => {
             isTheoryCollapsedMobile = !isTheoryCollapsedMobile;
             const drawer = document.getElementById('lesson-theory-drawer');
@@ -2173,19 +2314,13 @@
             camera.position.z = cameraState.radius * sinPhi * Math.cos(cameraState.theta);
             camera.lookAt(0, cameraState.lookAtY, 0);
 
-            // 2. Subtle Cathedral Dust Rotation
-            const dust = scene.getObjectByName("cathedralDust");
-            if (dust) {
-                dust.rotation.y = elapsed * 0.02;
-            }
-
-            // 3. Pulse Goal Ring in Learning Mode
+            // 2. Pulse Goal Ring in Learning Mode
             if (lessonGoalMarker.visible) {
                 const pulse = 1.0 + Math.sin(elapsed * 4.5) * 0.12;
                 lessonGoalMarker.scale.set(pulse, pulse, 1);
             }
 
-            // 4. Piece Idle Breathing & Selection Levitation
+            // 3. Piece Idle Breathing & Selection Levitation
             for (const sq in activePieceMeshes) {
                 const piece = activePieceMeshes[sq];
                 if (currentMoveAnimation && (currentMoveAnimation.attacker === piece || currentMoveAnimation.defender === piece)) {
@@ -2197,7 +2332,7 @@
                 piece.mesh.position.y += (targetY - piece.mesh.position.y) * 0.16;
             }
 
-            // 5. Active Move & Attack Lunge Animation
+            // 4. Active Move & Attack Lunge Animation
             if (currentMoveAnimation) {
                 const anim = currentMoveAnimation;
                 anim.elapsed += dt;
@@ -2252,7 +2387,7 @@
                 }
             }
 
-            // 6. Update Pooled Shatter Shards
+            // 5. Update Pooled Shatter Shards
             for (let i = 0; i < SHARD_POOL_SIZE; i++) {
                 const frag = shardPool[i];
                 if (!frag.active) continue;
